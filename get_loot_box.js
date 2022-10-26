@@ -29,6 +29,8 @@ function getLootBox() {
         }
     });
     
+    sleep(3000);
+    
     var adWatchRequest = {
         url: "https://minealpha.net/api/user/adWatched",
         headers: {
@@ -58,6 +60,13 @@ function getLootBox() {
             }
         }
     });
+}
+
+function sleep(milliseconds) { 
+    var start = new Date().getTime(); 
+    while(1)
+        if ((new Date().getTime() - start) > milliseconds)
+            break;
 }
 
 getLootBox();
