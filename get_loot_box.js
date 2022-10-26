@@ -17,9 +17,9 @@ function getLootBox() {
                 if (obj["Succeeded"]) {
                     var reward = obj["RewardText"];
                     $notification.post("LootBox", "", reward + " ✅");
+                    suc = true;
                     $done();
                 } else {
-                    $notification.post("打開 LootBox", "", "遇到未知問題 ❌");
                     $done();
                 }
             } else {
@@ -28,9 +28,9 @@ function getLootBox() {
             }
         }
     });
-    
-    sleep(3000);
-    
+}
+
+function skipAds() {
     var adWatchRequest = {
         url: "https://minealpha.net/api/user/adWatched",
         headers: {
@@ -69,4 +69,9 @@ function sleep(milliseconds) {
             break;
 }
 
-getLootBox();
+var suc = false;
+while(!suc) {
+    getLootBox();
+    sleep(1000);
+}
+skipAds();
