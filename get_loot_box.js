@@ -9,21 +9,22 @@ function getLootBox() {
     };
     $httpClient.get(openLootBoxRequest, function (error, response, data) {
         if (error) {
-            $notification.post("Alpha Network LootBox", "", "連線錯誤‼️");
+            $notification.post("α Network LootBox", "", "連線錯誤‼️");
             $done();
         } else {
             if (response.status == 200) {
                 let obj = JSON.parse(data);
                 if (obj["Succeeded"]) {
                     var reward = obj["RewardText"];
-                    $notification.post("LootBox", "", reward + " ✅");
+                    $notification.post("α LootBox", "", reward + " ✅");
                     suc = true;
                     $done();
                 } else {
+                    console.log(obj["ErrorMessage"]);
                     $done();
                 }
             } else {
-                $notification.post("Alpha Network LootBox", "", "失敗‼️");
+                $notification.post("α Network LootBox", "", "失敗‼️");
                 $done();
             }
         }
@@ -41,21 +42,21 @@ function skipAds() {
     };
     $httpClient.get(adWatchRequest, function (error, response, data) {
         if (error) {
-            $notification.post("Alpha Network adWatch", "", "連線錯誤‼️");
+            $notification.post("α Network adWatch", "", "連線錯誤‼️");
             $done();
         } else {
             if (response.status == 200) {
                 let obj = JSON.parse(data);
                 if (obj["Succeeded"]) {
                     var reward = obj["RewardText"];
-                    $notification.post("adWatch", "", reward + " ✅");
+                    $notification.post("α ADWatch", "", reward + " ✅");
                     $done();
                 } else {
-                    $notification.post("adWatch", "", "遇到未知問題 ❌");
+                    console.log(obj["ErrorMessage"]);
                     $done();
                 }
             } else {
-                $notification.post("Alpha Network adWatch", "", "失敗‼️");
+                $notification.post("α Network adWatch", "", "失敗‼️");
                 $done();
             }
         }
@@ -69,9 +70,14 @@ function sleep(milliseconds) {
             break;
 }
 
+skipAds();
 var suc = false;
+var limit = 0;
 while(!suc) {
     getLootBox();
     sleep(1000);
+    limit = limit + 1;
+    if (limit == 10)
+        break;
 }
 skipAds();
