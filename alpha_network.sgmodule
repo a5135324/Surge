@@ -3,7 +3,7 @@
 
 [Script]
 cron "*/5 * * * *" script-path=https://raw.githubusercontent.com/a5135324/Surge/main/alpha_open_lootbox.js, wake-system=1, timeout=5
-cron "38 15 * * *" script-path=https://raw.githubusercontent.com/a5135324/Surge/main/alpha_mining.js,wake-system=1
+cron "*/15 * * *" script-path=https://raw.githubusercontent.com/a5135324/Surge/main/alpha_mining.js,wake-system=1
 alpha_network_token.js = type=http-request,pattern=^https:\/\/minealpha\.net\/api\/RemoteAppConfig\/getRemoteiOSConfig,script-path=https://raw.githubusercontent.com/a5135324/Surge/main/alpha_network_token.js,script-update-interval=-1
 alpha_provider_id.js = type=http-response,pattern=^https:\/\/minealpha\.net\/api\/user\/startWork,requires-body=1,script-path=https://raw.githubusercontent.com/a5135324/Surge/main/alpha_network_extProviderId.js,max-size=0
 
