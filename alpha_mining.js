@@ -23,7 +23,7 @@ function startMining() {
                     $notification.post("α Balance ✅", "", balance);
                     $done();
                 } else {
-                    $notification.post("α Network Mining", "", obj["ErrorMessage"]);
+                    console.log("α Network Mining", "", obj["ErrorMessage"]);
                     $done();
                 }
             } else {
